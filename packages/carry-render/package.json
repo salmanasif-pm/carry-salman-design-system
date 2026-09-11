@@ -1,0 +1,19 @@
+{
+  "name": "carry-render",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Template runner: a validated Carry artifact → one self-contained HTML file → PNG (1×, 2×), PDF, PPTX (native text), Notion markdown; plus the mobile-readability check.",
+  "exports": { ".": "./src/index.mjs" },
+  "bin": { "carry-render": "./bin/carry-render.mjs", "carry-check-mobile": "./bin/carry-check-mobile.mjs" },
+  "scripts": { "test": "vitest run" },
+  "dependencies": {
+    "carry-content": "workspace:*",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^6.0.0",
+    "@playwright/test": "^1.49.0",
+    "pptxgenjs": "^4.0.1"
+  },
+  "devDependencies": { "vitest": "^3.0.0" }
+}

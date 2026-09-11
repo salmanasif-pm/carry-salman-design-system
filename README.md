@@ -6,7 +6,10 @@ it. Standing rules for AI collaborators: `CLAUDE.md`. Package guide: `packages/c
 
 ```
 packages/carry-ds/      canonical design system (tokens, 21 components, 8 templates, docs, release check)
-packages/carry-web/     Vite + React 18 + TypeScript site consuming carry-ds directly
+packages/carry-web/     Vite + React 18 + TypeScript site consuming carry-ds directly; hosts the interactive threshold
+packages/carry-content/ content contract: Zod schema, fail-closed validator, JSON Schema, carry-validate CLI
+packages/carry-elements/ portable layer: <carry-composition> custom element (no framework)
+packages/carry-render/  template runner: artifact JSON → self-contained HTML → PNG 1×/2×, PDF, PPTX, markdown; mobile check
 scripts/                release-gate.mjs (wraps the package's public check), check-deps.mjs
 docs/plan/              implementation plan for the ten handoff tasks
 docs/research/          reference-extraction matrix (firewall decisions)
@@ -22,6 +25,10 @@ pnpm check:deps      # no UI, CSS, icon or animation libraries; unlisted deps wa
 pnpm typecheck       # .jsx sources typed by their sibling .d.ts files
 pnpm build           # carry-web → packages/carry-web/dist
 pnpm dev             # carry-web on Vite
+pnpm render <artifact.json> --all          # dist/<name>/: index.html, png/, png@2x/, png-grey/, artifact.pdf, deck.pptx, artifact.md
+pnpm render <artifact.json> --public       # public build: refuses superseded / internal / restricted and anything not approved
+pnpm check:mobile <artifact.json>          # social + carousel: 360 and 320 px display, greyscale, essential text ≥ 12 px
+node packages/carry-content/bin/carry-validate.mjs <artifact.json> [--public] [--json]
 pnpm ci              # all of the above, in gate order
 ```
 

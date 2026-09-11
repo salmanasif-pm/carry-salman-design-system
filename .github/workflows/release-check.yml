@@ -31,3 +31,23 @@ jobs:
       - run: pnpm build
       - run: pnpm typecheck
       - run: pnpm test
+      # Export smoke: CI provisions its own browser (the dev environment is preprovisioned and never runs install).
+      - run: npx playwright install chromium --with-deps
+      - name: render + export + mobile check on the placeholder examples
+        run: |
+          pnpm render:examples
+          pnpm check:mobile packages/carry-content/examples/social.placeholder.json
+          pnpm check:mobile packages/carry-content/examples/carousel.placeholder.json
+          node -e "
+            const { statSync, readdirSync } = require('node:fs');
+            const pdf = statSync('dist/deck.placeholder/artifact.pdf'); if (pdf.size < 20 * 1024) throw new Error('deck pdf suspiciously small: ' + pdf.size);
+            const pngs = readdirSync('dist/deck.placeholder/png').filter(f => f.endsWith('.png')); if (pngs.length !== 9) throw new Error('expected 9 slide PNGs, got ' + pngs.length);
+            statSync('dist/deck.placeholder/deck.pptx'); statSync('dist/social.placeholder/png@2x/slide-01.png');
+            console.log('export smoke OK');
+          "
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rendered-examples
+          path: dist/
+          retention-days: 7
