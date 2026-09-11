@@ -1,0 +1,22 @@
+{
+  "name": "carry",
+  "version": "0.9.1",
+  "private": true,
+  "description": "Code home for Carry, Salman Asif's personal design system. packages/carry-ds is canonical; everything else is tooling around it.",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check:release": "node scripts/release-gate.mjs",
+    "check:deps": "node scripts/check-deps.mjs",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "pnpm -r --if-present test",
+    "build": "pnpm -r --if-present build",
+    "dev": "pnpm --filter carry-web dev",
+    "ci": "pnpm check:release && pnpm check:deps && pnpm typecheck && pnpm test && pnpm build"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
+  }
+}

@@ -1,0 +1,33 @@
+name: release-check
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  release-gate:
+    name: release-check --public (fails on restricted terms, placeholder identity, operating-only states)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # No install: the gate is plain Node so it cannot be skipped by a broken dependency tree.
+      - run: node scripts/release-gate.mjs
+
+  workspace:
+    name: deps · typecheck · test · build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check:deps
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build

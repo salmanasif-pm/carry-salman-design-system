@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.vite/
+*.log
+# never committed: restricted reference material and internal decision history
+uploads/
+strategy/
+github.md

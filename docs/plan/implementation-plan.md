@@ -7,23 +7,13 @@ specified in full. Nothing in `packages/carry-ds/` has been modified beyond the 
 requested in `README-FIRST.md`. Every item marked **[approval]** touches the canonical package or
 an identity decision and waits for Salman.
 
-## 0. Where the code lives — decision needed
+## 0. Where the code lives — decided
 
-The handoff describes a **new repository** (`carry/`), and task 7 treats
-`quicktake-design-system` as a separate target that vendors Carry. The only repository this session
-can push to is `quicktake-design-system`, and its root `CLAUDE.md` is the engine's standing law, so
-"rename `CLAUDE.md.txt` → `CLAUDE.md` at the root" cannot mean that root.
-
-Staged as: `quicktake-design-system/carry/` on branch `claude/festive-curie-882m3c`, a
-self-contained subtree with its own `CLAUDE.md`, `packages/`, `docs/`. It has no reference into the
-engine's `src/`, `vendor/` or `content/` (see `docs/research/reference-extraction-matrix.md`).
-
-Options:
-- **A (recommended)** — create the `carry` repository under `salmanasif-pm` and move this subtree
-  there (`git subtree split` keeps history). The engine repo then vendors a tagged release (task 7).
-- **B** — keep `carry/` inside the engine repo permanently. Cheaper today, but it puts a canonical
-  design system next to two read-only vendored ones and makes "vendor Carry into the engine" a
-  copy within one repo.
+Option A taken. Salman created `salmanasif-pm/carry-salman-design-system`; the `carry/` staging
+subtree moved there with its history (`git subtree split`) and is the repository root. The engine
+repo `quicktake-design-system` stays a separate consumer that vendors a tagged Carry release in
+task 7. The staging copy on the engine branch is removed. Nothing here references the engine's
+`src/`, `vendor/` or `content/` (see `docs/research/reference-extraction-matrix.md`).
 
 ## 1. Findings from the import
 
@@ -51,38 +41,40 @@ Options:
 4. `README-FIRST.md` was not copied: its four steps are executed and its content is repeated in
    `docs/handoff-claude-code.md`.
 
-## 2. Task 1 — workspace scaffold (no package changes)
+## 2. Task 1 — workspace scaffold (done; no package changes)
 
 Files, all outside `packages/carry-ds/`:
-- `carry/pnpm-workspace.yaml` — `packages/*`.
-- `carry/package.json` — private, **no `"type"` field** (keeps `packages/carry-ds/scripts/*.js`
+- `pnpm-workspace.yaml` — `packages/*`.
+- `package.json` — private, **no `"type"` field** (keeps `packages/carry-ds/scripts/*.js`
   CommonJS), `engines.node >= 20`, scripts: `check:release`, `check:deps`, `typecheck`, `test`,
   `dev`, `build`. pnpm pinned via `packageManager`.
-- `carry/tsconfig.base.json` — strict, `jsx: react-jsx`, `allowJs` so the `.jsx` sources compile
+- `tsconfig.base.json` — strict, `jsx: react-jsx`, `allowJs` so the `.jsx` sources compile
   with their sibling `.d.ts` files.
-- `carry/packages/carry-web/` — Vite + React 18 + TypeScript app. Imports
+- `packages/carry-web/` — Vite + React 18 + TypeScript app. Imports
   `../carry-ds/styles.css`; consumes components by transpiling the `.jsx` sources directly (the
   `_ds_bundle.js` global remains the path for non-bundled HTML). First page: the 21 components
   rendered with `[placeholder]` content, mode switch via `data-carry-mode`, graphite ground only
   in `personal`. No identity decisions; tokens are consumed, never redefined.
-- `carry/scripts/check-deps.mjs` — fails on any UI/CSS/animation library in any workspace
+- `scripts/check-deps.mjs` — fails on any UI/CSS/animation library in any workspace
   `package.json` (React, Vite, TypeScript, Playwright, Zod, Vitest allowed).
-- `carry/.gitignore` — `node_modules/`, `dist/`, `uploads/`, `strategy/`, `github.md`.
-- `carry/README.md` — workspace map and the two-command workflow.
+- `.gitignore` — `node_modules/`, `dist/`, `uploads/`, `strategy/`, `github.md`.
+- `README.md` — workspace map and the two-command workflow.
 
-Open questions for task 1 (defaults chosen if unanswered): pnpm + plain workspaces, no Turborepo
-until there are more than three packages; Vitest as test runner; React 18.3 to match the engine.
+Defaults taken: pnpm 10 plain workspaces, no Turborepo until there are more than three packages;
+Vitest planned as the test runner; React 18.3 and Vite 6. `CARRY_FORMS` is exported by
+`Composition.jsx` but not declared in `Composition.d.ts`, so `carry-web` derives the form union from
+the component's prop type; adding the export to the `.d.ts` is a package change **[approval]**.
+Verified headlessly: seven forms render, both OFL fonts load, personal mode switches the ground to
+graphite, no horizontal overflow at 360px.
 
-## 3. Task 2 — CI gate
+## 3. Task 2 — CI gate (done; red until §1.1 is resolved)
 
-- `.github/workflows/carry-release-check.yml` at the **engine repo root** (the only place GitHub
-  reads workflows while Carry is staged here), scoped with `paths: [carry/**]`. Under option A it
-  moves to `carry/.github/workflows/`.
-- Steps: checkout → Node 20 → `pnpm install --frozen-lockfile` → `node scripts/release-gate.mjs`.
-- `carry/scripts/release-gate.mjs` runs `packages/carry-ds/scripts/release-check.js --public` as a
-  child process **from the `carry/` CommonJS scope**, captures stdout, and fails the job unless the
+- `.github/workflows/release-check.yml`: two jobs. `release-gate` runs on plain Node with no install,
+  so a broken dependency tree can never skip it. `workspace` runs deps check, typecheck, test, build.
+- `scripts/release-gate.mjs` runs `packages/carry-ds/scripts/release-check.js --public` as a
+  child process **from the workspace root's CommonJS scope**, captures stdout, and fails the job unless the
   output begins with `Carry release check —` and ends with `clean`. It also fails if
-  `uploads/`, `strategy/` or `github.md` exist anywhere under `carry/`.
+  `uploads/`, `strategy/` or `github.md` exist anywhere in the repository.
 - The gate is red until the four findings in §1.1 are resolved. Proposed resolutions, each a
   one-line package edit plus a `docs/decisions/` entry, **[approval]**:
   1. Add `docs/delta-report-v0.9.1.md` and `docs/handoff-claude-code.md` to the script's
