@@ -40,6 +40,12 @@ describe('fail-closed rules', () => {
     expect(codes(validateArtifact({ ...social(), content_kind: 'verified' }))).toContain('missing-claims-ref');
     expect(validateArtifact({ ...social(), content_kind: 'verified', claims_register_ref: 'CR-000' }).ok).toBe(true);
   });
+  it('verified references are checked against the approved claims when provided', () => {
+    const v = { ...social(), content_kind: 'verified', claims_register_ref: 'CR-007' };
+    expect(validateArtifact(v).ok).toBe(true);
+    expect(codes(validateArtifact(v, { claims: ['CR-001'] }))).toContain('unknown-claims-ref');
+    expect(validateArtifact(v, { claims: ['CR-007'] }).ok).toBe(true);
+  });
   it('tells renderers to label illustrative content', () => {
     expect(warnCodes(validateArtifact({ ...social(), content_kind: 'illustrative' }))).toContain('must-label-illustrative');
   });

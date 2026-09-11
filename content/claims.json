@@ -1,0 +1,6 @@
+{
+  "$comment": "Approved wording pulled from the Claims & Verification Register (internal Notion). Rows are written only by bin/claims-sync.mjs; verified artifacts reference them by id in claims_register_ref. This file ships empty until the register is connected; nothing here is invented.",
+  "source": "Claims & Verification Register — CV and Positioning (internal)",
+  "synced_at": null,
+  "claims": []
+}

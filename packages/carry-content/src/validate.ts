@@ -14,7 +14,7 @@ const p = (path: Array<string | number>) => path.length ? path.map((s) => (typeo
  * missing claims reference is an error the author fixes. Public builds additionally refuse every
  * operating-only value (superseded · internal · restricted) and any artifact not released as approved.
  */
-export function validateArtifact(raw: unknown, opts: { publicBuild?: boolean } = {}): ValidationResult {
+export function validateArtifact(raw: unknown, opts: { publicBuild?: boolean; claims?: Iterable<string> } = {}): ValidationResult {
   const publicBuild = opts.publicBuild ?? false;
   const errors: Problem[] = [];
   const warnings: Problem[] = [];
@@ -40,6 +40,10 @@ export function validateArtifact(raw: unknown, opts: { publicBuild?: boolean } =
 
   // Content kind.
   if (a.content_kind === 'verified' && !a.claims_register_ref) err('claims_register_ref', 'missing-claims-ref', 'content_kind "verified" requires a Claims Register reference; without one the content is illustrative or placeholder');
+  if (a.content_kind === 'verified' && a.claims_register_ref && opts.claims) {
+    const known = new Set(opts.claims);
+    if (!known.has(a.claims_register_ref)) err('claims_register_ref', 'unknown-claims-ref', `"${a.claims_register_ref}" is not an approved row in content/claims.json — run claims-sync, or the content is not verified`);
+  }
   if (a.content_kind !== 'verified' && a.claims_register_ref) warn('claims_register_ref', 'unused-claims-ref', 'a Claims Register reference on non-verified content is ignored by renderers');
 
   // Mode requirements (engine-integration §2).

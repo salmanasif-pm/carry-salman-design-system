@@ -11,3 +11,4 @@
 - Fitness content: personal mode only, documentary only, never a professional headline. Portrait photography allowed in introductions.
 - Never commit `uploads/`, `strategy/` or any PureLogics / QuickTake material.
 - Do not change token values or component semantics without a `docs/decisions/NNNN-*.md` entry naming what would reopen it. Enhance the tooling, not the identity.
+- Workspace map, commands and the artifact contract for agents: `AGENTS.md`.

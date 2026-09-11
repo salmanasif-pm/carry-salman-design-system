@@ -16,7 +16,7 @@ Everything in the project, including:
 | `readme.md`, `SKILL.md`, `CLAUDE.md` | guide, agent skill, standing rules |
 | `styles.css`, `tokens/` | entry point + 8 token files |
 | `assets/fonts/` | Instrument Sans (OFL 1.1), Geist Mono (OFL 1.1), `fonts-manifest.json` |
-| `components/` | 21 components (signature 11 · diagram 6 · data 1 · brand 1 · core 1) with `.d.ts`, `.prompt.md`, 5 cards |
+| `components/` | 19 components (signature 10 · diagram 6 · data 1 · brand 1 · core 1; count corrected, see readme) with `.d.ts`, `.prompt.md`, 5 cards |
 | `guidelines/` | 20 foundation cards |
 | `templates/` | 8 templates + `ds-base.js` per template |
 | `docs/` | state architecture, rules, governance, accessibility, engine integration, Notion/web, roadmap, delta report, this manifest |

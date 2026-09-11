@@ -1,6 +1,29 @@
-# Carry platform — implementation plan (awaiting approval)
+# Carry platform — implementation plan and status
 
-Status: provisional · release: internal · owner: Salman Asif · author: Claude Code · date: 2026-09-11
+Status: provisional · release: internal · owner: Salman Asif · author: Claude Code · date: 2026-09-11 (updated end of day)
+
+## Status of the ten handoff tasks
+
+| # | task | state | where |
+|---|---|---|---|
+| 1 | workspace scaffold | done | root, `packages/carry-web` |
+| 2 | CI gate | done; green on the package after 0007/0008 | `.github/workflows/release-check.yml`, `scripts/release-gate.mjs` |
+| 3 | `carry-content` schema + validator | done; 28 tests | `packages/carry-content` |
+| 4 | interactive Composition | done; verified headlessly (drag, keys, snap, ARIA) | `packages/carry-elements`, `carry-web` |
+| 5 | template runner (PNG 1×/2×, PDF, PPTX, markdown) | done for the five families | `packages/carry-render` |
+| 6 | mobile check (360 / 320, greyscale, ≥ 12 px) | done; in CI | `carry-check-mobile` |
+| 7 | engine vendor (`vendor/carry-ds`, `system: carry`, new types, disabled presets) | done on engine branch `claude/festive-curie-882m3c` | `salmanasif-pm/quicktake-design-system` |
+| 8 | Ladle stories, all components, three-axis controls, seven forms | done; 28 stories | `packages/carry-web/src/stories` |
+| 9 | Claims Register sync (optional) | scaffolded: `claims-sync` CLI (dry run without a token), `content/claims.json`, `--claims` check in the validator; **not connected** — needs `NOTION_TOKEN` + the register's database id | `packages/carry-content/bin/claims-sync.mjs` |
+| 10 | decisions 0001–0006 | done, plus 0007–0010 | `packages/carry-ds/docs/decisions` |
+
+Open items for Salman: create the git tag `carry-v0.9.1` on commit `9b31015` (the session's git proxy refused
+tag pushes; the same commit is published as branch `release/carry-v0.9.1`); identity approval, which locks
+0001–0003; connect the Claims Register for task 9; the research phase (brief §3–4) is still to be written and
+is suited to a lower-cost model with `docs/research/reference-extraction-matrix.md` as scope.
+
+Corrections made to the package's own docs during the work: the component count is 19 (signature 10), not
+21 (11); recorded in `readme.md` and `docs/package-manifest.md`.
 
 This plan covers the ten tasks in `packages/carry-ds/docs/handoff-claude-code.md`, with tasks 1 and 2
 specified in full. Nothing in `packages/carry-ds/` has been modified beyond the three import steps

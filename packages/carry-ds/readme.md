@@ -109,7 +109,7 @@ Rules: axes appear only when relevant · a Confirmed fact can be gated · approv
 
 Namespace on `window`: `DesignSystem_79e114`.
 
-**Signature** (`components/signature/`, 11)
+**Signature** (`components/signature/`, 10)
 - `Composition` — the seven-form family: above / line / below with form-specific labels, tick and lead.
 - `HandleTruth` — the specialised first form.
 - `Threshold` — the 2px rule; `fn` = decision · evidence · progression · transition · reflection · separation changes the tick.
@@ -135,7 +135,7 @@ Namespace on `window`: `DesignSystem_79e114`.
 
 **Core** (`components/core/`, 1) — `Button` (primary · secondary · ghost · signal).
 
-**Count: 21 components** (the manifest also exports `normalizeState`, `CARRY_FORMS`, `CARRY_CERTAINTY`, `CARRY_RELEASE` as helpers — not components).
+**Count: 19 components** (signature 10 · diagram 6 · data 1 · brand 1 · core 1; corrected from 21 in v0.9.1 — the manifest lists 23 entries because it also exports `CARRY_FORMS`, `CARRY_CERTAINTY`, `CARRY_OPERATING_CERTAINTY`, `CARRY_RELEASE` as helpers, and `normalizeState` is a function, not a component).
 
 ### Intentional additions
 All components are intentional: no source defines a component inventory for this personal system (the brief lists *candidate* signature components; the attached systems' inventories were not carried over). Each maps to a brief §9 hypothesis or a §4 doctrine: Decision Line, Evidence Strip, Boundary Frame, State Marker, Load Path, Consequence Note, Progression Ladder, Counterpoint Rail, Handoff Footer, Source Ancestry → `DecisionLine`, `EvidenceStrip`, `BoundaryFrame`, `StateMark`, `LoadNode/LoadLane/Connector`, `ConsequenceNote`, `ProgressionLadder`, `CounterpointRail`, `HandoffFooter`, `Provenance`. `HandleTruth`/`Threshold` operationalise Visible Handle vs Operating Truth. `Matrix` operationalises bridge languages. `Button` exists for future web/product surfaces only.
