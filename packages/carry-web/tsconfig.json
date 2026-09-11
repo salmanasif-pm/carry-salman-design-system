@@ -1,8 +1,20 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "types": ["vite/client", "node"],
-    "paths": { "@carry-ds/*": ["../carry-ds/*"] }
+    "types": [
+      "vite/client",
+      "node"
+    ],
+    "paths": {
+      "@carry-ds/*": [
+        "../carry-ds/*"
+      ]
+    }
   },
-  "include": ["src", "vite.config.ts", "../carry-ds/components/**/*.d.ts"]
+  "include": [
+    "src",
+    ".ladle",
+    "vite.config.ts",
+    "../carry-ds/components/**/*.d.ts"
+  ]
 }

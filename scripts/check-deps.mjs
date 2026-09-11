@@ -13,6 +13,7 @@ const ALLOW = new Map([
   ['@types/react', 'types'], ['@types/react-dom', 'types'], ['@types/node', 'types'],
   ['vitest', 'test runner'], ['zod', 'content schema validation (task 3)'],
   ['@playwright/test', 'export and mobile check (tasks 5, 6)'], ['playwright', 'export and mobile check (tasks 5, 6)'],
+  ['@ladle/react', 'component stories with controls (task 8) — packages/carry-ds/docs/decisions/0010-dependency-ladle.md'],
   ['pptxgenjs', 'PPTX export with native text — packages/carry-ds/docs/decisions/0009-dependency-pptxgenjs.md'],
 ]);
 const DENY = [/^@mui\//, /^@material-ui/, /^antd$/, /^@ant-design/, /^@chakra-ui/, /^bootstrap$/, /^react-bootstrap$/, /tailwind/, /^daisyui$/, /shadcn/, /^@radix-ui/, /^@headlessui/, /^@emotion/, /^styled-components$/, /^framer-motion$/, /^motion$/, /^gsap$/, /^animejs$/, /^lottie/, /icons?$/i, /^@fortawesome/, /^lucide/];
