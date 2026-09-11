@@ -14,11 +14,11 @@
     "test": "pnpm -r --if-present test",
     "build": "pnpm -r --if-present build",
     "dev": "pnpm --filter carry-web dev",
-    "ci": "pnpm check:release && pnpm check:deps && pnpm build && pnpm typecheck && pnpm test",
     "render": "node packages/carry-render/bin/carry-render.mjs",
     "check:mobile": "node packages/carry-render/bin/carry-check-mobile.mjs",
     "render:examples": "for f in packages/carry-content/examples/*.json; do node packages/carry-render/bin/carry-render.mjs \"$f\" --all || exit 1; done",
-    "claims:sync": "node packages/carry-content/bin/claims-sync.mjs"
+    "claims:sync": "node packages/carry-content/bin/claims-sync.mjs",
+    "check": "pnpm check:release && pnpm check:deps && pnpm build && pnpm typecheck && pnpm test"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",

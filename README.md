@@ -29,7 +29,7 @@ pnpm render <artifact.json> --all          # dist/<name>/: index.html, png/, png
 pnpm render <artifact.json> --public       # public build: refuses superseded / internal / restricted and anything not approved
 pnpm check:mobile <artifact.json>          # social + carousel: 360 and 320 px display, greyscale, essential text ≥ 12 px
 node packages/carry-content/bin/carry-validate.mjs <artifact.json> [--public] [--json]
-pnpm ci              # all of the above, in gate order
+pnpm check           # all of the above, in gate order
 ```
 
 The public check must be run from this workspace root or through `pnpm check:release`: the script
