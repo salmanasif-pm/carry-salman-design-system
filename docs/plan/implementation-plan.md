@@ -17,8 +17,8 @@ Status: provisional · release: internal · owner: Salman Asif · author: Claude
 | 9 | Claims Register sync (optional) | scaffolded: `claims-sync` CLI (dry run without a token), `content/claims.json`, `--claims` check in the validator; **not connected** — needs `NOTION_TOKEN` + the register's database id | `packages/carry-content/bin/claims-sync.mjs` |
 | 10 | decisions 0001–0006 | done, plus 0007–0010 | `packages/carry-ds/docs/decisions` |
 
-Open items for Salman: create the git tag `carry-v0.9.1` on commit `9b31015` (the session's git proxy refused
-tag pushes; the same commit is published as branch `release/carry-v0.9.1`); identity approval, which locks
+Release pointer: commit `9b31015`, branch `release/carry-v0.9.1` (no tag; the engine's `vendor.lock.json` pins
+every file). Open items for Salman: identity approval, which locks
 0001–0003; connect the Claims Register for task 9; the research phase (brief §3–4) is still to be written and
 is suited to a lower-cost model with `docs/research/reference-extraction-matrix.md` as scope.
 

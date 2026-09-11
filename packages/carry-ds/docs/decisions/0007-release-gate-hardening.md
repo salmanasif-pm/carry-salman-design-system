@@ -13,4 +13,6 @@
 
 **Evidence.** First run of the check under Node, 2026-09-11: 24 findings, none a content leak (`docs/plan/implementation-plan.md` §1 in the workspace). The package manifest recorded that the script had never been run under Node.
 
+**Release pointer.** Releases are identified by commit and a `release/carry-vX.Y.Z` branch; the engine pins files by hash.
+
 **Reopens if.** A future ledger needs the same allowance (add the file, not a pattern); the design tool's compiler starts loading `scripts/*.cjs`.

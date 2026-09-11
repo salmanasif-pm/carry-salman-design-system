@@ -39,6 +39,6 @@ packages/carry-web/       Vite + React site: scaffold page, interactive threshol
 content/claims.json       approved Claims-Register wording (written only by claims-sync)
 docs/plan/                task status; docs/research/ reference-extraction matrix
 ```
-The presentation engine at `salmanasif-pm/quicktake-design-system` vendors `packages/carry-ds` (tag / branch
-`carry-v0.9.1`) and renders Carry decks with `system: carry`; its contract is
+The presentation engine at `salmanasif-pm/quicktake-design-system` vendors `packages/carry-ds` (commit `9b31015`, branch
+`release/carry-v0.9.1`) and renders Carry decks with `system: carry`; its contract is
 `packages/carry-ds/docs/engine-integration.md`.
