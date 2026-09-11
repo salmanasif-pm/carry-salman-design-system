@@ -1,0 +1,12 @@
+{
+  "version": 1, "artifact": "document", "mode": "evidence", "content_kind": "placeholder", "release": "review",
+  "title": "[proposal title]", "form": "direction-consequence", "above": "[the direction]", "below": "[what it changes]",
+  "lead": { "kind": "recommendation", "text": "[the recommendation]", "reopens": "[what would reopen it]" },
+  "consequence": { "who": "[who]", "text": "[what this changes for them]" },
+  "handoff": { "state": "Draft", "next": "[decision · by date]", "owner": "[named owner]", "artifact": "[next artifact]" },
+  "sections": [
+    { "heading": "[context]", "body": ["[paragraph]"] },
+    { "heading": "[evidence]", "body": ["[paragraph]"], "evidence": [ { "key": "[k]", "value": "[v]", "state": { "certainty": "provisional" }, "source": "[named source]" } ] }
+  ],
+  "counterpoint": "[the condition that would change the recommendation]"
+}

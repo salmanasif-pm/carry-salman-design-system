@@ -1,0 +1,19 @@
+{
+  "version": 1, "artifact": "deck", "mode": "executive", "content_kind": "placeholder", "release": "review",
+  "title": "[deck title]", "reader": "[executive reader]",
+  "form": "direction-consequence", "above": "[the direction]", "below": "[what it changes]",
+  "lead": { "kind": "recommendation", "text": "[the recommendation]", "reopens": "[what would reopen it]" },
+  "handoff": { "state": "Awaiting evidence", "next": "[decision · by date]", "owner": "[named owner]", "artifact": "[next artifact]" },
+  "sources": [ { "name": "[internal source, named not linked]", "kind": "internal" } ],
+  "slides": [
+    { "id": "title", "type": "title", "title": "[deck title]", "subtitle": "[one line]" },
+    { "id": "who", "type": "statement", "form": "handle-truth", "above": "[the handle]", "below": "[what is actually going on]", "lead": { "kind": "decision", "text": "[decision underneath]" } },
+    { "id": "how", "type": "decision", "lead": { "kind": "recommendation", "text": "[recommendation]" }, "evidence": [ { "key": "[k]", "value": "[v]", "state": { "certainty": "confirmed", "gated": { "gate": "[condition]", "owner": "[named owner]", "clears": "[what has to be true]" } } } ], "counterpoint": "[the condition that would change the recommendation]" },
+    { "id": "done", "type": "evidence", "heading": "[what was done]", "evidence": [ { "key": "[k]", "value": "[v]", "state": { "certainty": "provisional" } } ] },
+    { "id": "path", "type": "timeline", "heading": "[progression]", "steps": [ { "label": "[step 1]", "state": { "certainty": "confirmed" } }, { "label": "[step 2]", "current": true, "state": { "certainty": "provisional" } }, { "label": "[step 3]", "state": { "certainty": "unknown" } } ] },
+    { "id": "matrix", "type": "table", "heading": "[decision matrix]", "table": { "columns": [ { "key": "option", "header": "[option]" }, { "key": "cost", "header": "[cost]" } ], "rows": [ { "option": "[A]", "cost": { "certainty": "unknown", "text": "—" } }, { "option": "[B]", "cost": "[known cost]" } ] } },
+    { "id": "system", "type": "diagram", "heading": "[load path]", "diagram": { "lanes": [ { "id": "own", "owner": "[owner A]", "nodes": [ { "id": "a", "label": "[node]", "certainty": "confirmed", "carries": true }, { "id": "b", "label": "[node]", "certainty": "provisional" } ] }, { "id": "outside", "owner": "[owner B]", "boundary": true, "nodes": [ { "id": "c", "label": "[node]", "certainty": "unknown" } ] } ], "connectors": [ { "from": "a", "to": "b", "certainty": "confirmed" }, { "from": "b", "to": "c", "certainty": "unknown", "label": "[what crosses]" } ] } },
+    { "id": "so-what", "type": "consequence", "consequence": { "who": "[who]", "text": "[what this changes for them]" } },
+    { "id": "close", "type": "close", "ground": "graphite", "handoff": { "state": "Awaiting evidence", "next": "[decision · by date]", "owner": "[named owner]", "artifact": "[next artifact]" } }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": 1, "artifact": "social", "mode": "social", "content_kind": "placeholder", "release": "review",
+  "reader": "[who reads this]",
+  "form": "claim-support",
+  "above": "[the claim, one line, ≤ 108px on a 1080 source]",
+  "below": "[what supports it, exact]",
+  "lead": { "kind": "next", "text": "[what to do first]" },
+  "support": [
+    { "key": "[observed]", "value": "[exact figure · scope · source]", "state": { "certainty": "confirmed" } },
+    { "key": "[believed]", "value": "[working belief]", "state": { "certainty": "provisional" } }
+  ],
+  "caption": "[metadata lives here, not on the tile]"
+}

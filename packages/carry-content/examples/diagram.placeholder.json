@@ -1,0 +1,13 @@
+{
+  "version": 1, "artifact": "diagram", "mode": "systems", "content_kind": "placeholder", "release": "review",
+  "title": "[system name]", "form": "question-conditions", "above": "[who holds the load?]", "below": "[what it depends on]",
+  "lead": { "kind": "open", "text": "[the open question]" },
+  "consequence": { "who": "[who]", "text": "[what this changes for them]" },
+  "diagram": {
+    "lanes": [
+      { "id": "own", "owner": "[owner A]", "nodes": [ { "id": "a", "label": "[node]", "certainty": "confirmed", "carries": true }, { "id": "b", "label": "[node]", "certainty": "provisional", "gated": { "gate": "[condition]", "owner": "[named owner]", "clears": "[what has to be true]" } } ] },
+      { "id": "outside", "owner": "[owner B]", "boundary": true, "nodes": [ { "id": "c", "label": "[node]", "certainty": "unknown" } ] }
+    ],
+    "connectors": [ { "from": "a", "to": "b", "certainty": "confirmed" }, { "from": "b", "to": "c", "certainty": "unknown", "label": "[what crosses the boundary]" } ]
+  }
+}

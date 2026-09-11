@@ -1,0 +1,19 @@
+{
+  "name": "carry-content",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Content contract for Carry artifacts: Zod schema, fail-closed validator, JSON Schema emission and a CLI. Implements packages/carry-ds/docs/engine-integration.md §2 and docs/state-architecture.md.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" } },
+  "bin": { "carry-validate": "./bin/carry-validate.mjs" },
+  "files": ["dist", "schema", "bin", "examples"],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node bin/emit-schema.mjs",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": { "zod": "^4.0.0" },
+  "devDependencies": { "typescript": "~5.7.2", "vitest": "^3.0.0", "@types/node": "^22" }
+}

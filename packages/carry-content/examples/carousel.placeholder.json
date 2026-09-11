@@ -1,0 +1,10 @@
+{
+  "version": 1, "artifact": "carousel", "mode": "social", "content_kind": "placeholder", "release": "review",
+  "form": "observation-development", "above": "[the observation]", "below": "[where it might go]",
+  "panels": [
+    { "form": "observation-development", "above": "[observation]", "below": "[what was underneath]" },
+    { "form": "claim-support", "above": "[what was found]", "below": "[the support]", "lead": { "kind": "next", "text": "[what was built]" }, "support": [ { "key": "[k]", "value": "[v]", "state": { "certainty": "provisional" } } ] },
+    { "form": "outcome-enabled", "above": "[outcome]", "below": "[how it was enabled]", "lead": { "kind": "next", "text": "[next]" } },
+    { "form": "question-conditions", "above": "[the ask]", "below": "[what it depends on]", "lead": { "kind": "question", "text": "[the question for the reader]" } }
+  ]
+}
