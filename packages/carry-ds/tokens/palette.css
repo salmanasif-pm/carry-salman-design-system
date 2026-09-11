@@ -1,0 +1,28 @@
+/* Carry — raw palette. Never reference these in a design; use semantic.css roles.
+   Provenance: Checkpoint 1 decision 2 (paper / ink / one ochre), approved 2026-09-10. */
+:root{
+/* Paper — unbleached, warm. */
+--carry-paper-0:#F7F4EE;
+--carry-paper-1:#EFE9DF;
+--carry-paper-2:#E6DFD2;
+--carry-paper-3:#D6D0C4;
+/* Ink — near-black with a warm cast; graphite ramp for dark ground. */
+--carry-ink-0:#17181A;
+--carry-ink-1:#2A2C31;
+--carry-ink-2:#4A4C52;
+--carry-ink-3:#6E685C;
+--carry-ink-4:#9B958A;
+/* Graphite ground (dark mode: transitions + personal mode only). */
+--carry-graphite-0:#1D1F22;
+--carry-graphite-1:#26282C;
+--carry-graphite-2:#33363B;
+--carry-graphite-3:#4B4E55;
+--carry-graphite-ink:#EFE9DF;
+--carry-graphite-ink-2:#B9B3A7;
+--carry-graphite-ink-3:#8A8478;
+/* Ochre — the single signal hue. */
+--carry-ochre-0:#F1DCC4;
+--carry-ochre-1:#E8B989;
+--carry-ochre-2:#B8641C;
+--carry-ochre-3:#8C4A12;
+--carry-ochre-4:#5E300A}

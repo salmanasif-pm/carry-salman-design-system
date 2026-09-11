@@ -1,0 +1,19 @@
+<!-- @dsCard group="Components" viewport="700x520" name="Load-path diagrams" subtitle="LoadLane · LoadNode · Connector · BoundaryFrame · ProgressionLadder · Legend" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:20px;box-sizing:border-box;min-height:520px}#root{display:flex;flex-direction:column;gap:20px}.ill{font:400 11px/1 var(--font-truth);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}</style></head><body><div id="root"></div>
+<script type="text/babel">
+const { StateMark, Threshold, Composition, HandleTruth, DecisionLine, EvidenceStrip, ConsequenceNote, CounterpointRail, HandoffFooter, Provenance, Wordmark, LoadNode, LoadLane, Connector, BoundaryFrame, ProgressionLadder, Legend, Matrix, Button } = window.DesignSystem_79e114;
+ReactDOM.createRoot(document.getElementById('root')).render(<>
+<div className="ill">illustrative example — a generic marketplace, not client work</div>
+<div>
+<LoadLane label="Buyer side" meta="product · owns"><LoadNode kind="device" title="Checkout" subtitle="web + mobile"/><Connector label="order"/><LoadNode kind="store" title="Order ledger" subtitle="append-only" carries/><Connector certainty="provisional" label="async"/><LoadNode kind="service" title="Escrow" subtitle="milestone release" certainty="provisional"/></LoadLane>
+<LoadLane label="Trust & payments" meta="shared with partner" boundary><LoadNode kind="service" title="KYC check" subtitle="third-party" carries owner="partner"/><Connector label="verified"/><LoadNode kind="store" title="Wallets" subtitle="crypto + fiat"/><Connector certainty="unknown" label="ACH"/><LoadNode kind="external" title="Bank rails" certainty="provisional" gated={{gate:'compliance sign-off',owner:'named owner'}}/></LoadLane>
+<Legend extra={['solid node = carries the load']} style={{marginTop:12}}/></div>
+<div style={{display:'grid',gridTemplateColumns:'1.2fr 1fr',gap:24,alignItems:'start'}}>
+<BoundaryFrame label="Own" meta="MVP scope" ports={['admin review','dispute path']} outside="Fiat off-ramp in new regions · reconsider after MVP"><div style={{display:'flex',gap:12}}><LoadNode kind="team" title="Transaction journey" carries/><LoadNode kind="decision" title="Fee model" certainty="provisional" gated={{gate:'pricing review'}}/></div></BoundaryFrame>
+<ProgressionLadder orientation="vertical" current={2} steps={[{label:'Signal',note:'buyers abandon at escrow'},{label:'Framing'},{label:'Validation',certainty:'provisional'},{label:'Controlled test',gated:{gate:'compliance'}},{label:'Decision'}]}/></div></>);
+</script></body></html>

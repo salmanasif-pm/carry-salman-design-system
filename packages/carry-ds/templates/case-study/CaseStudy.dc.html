@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Case study" description="Portfolio page: problem · judgment · what was built · evidence strength · consequence · next decision. Wording is Claims-Register-approved; everything else is marked Provisional or Unknown. Client unnamed." -->
+<helmet><script src="./ds-base.js"></script></helmet>
+<article data-carry-mode="evidence" data-screen-label="Case study" style="max-width:960px;margin:0 auto;padding:64px;background:#EFE9DF;color:#17181A;font-family:'Instrument Sans',system-ui,sans-serif;box-sizing:border-box;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;justify-content:space-between;font:400 11px/1 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#6E685C"><span>case study · enterprise healthcare proposal · 2024–25</span><span>verified wording · client unnamed</span></div>
+<div style="font:400 11px/1 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#6E685C;margin-top:24px">the outcome</div>
+<h1 style="margin:0;font:500 56px/1 'Instrument Sans',sans-serif;letter-spacing:-.035em;max-width:20ch;text-wrap:balance">A complex proposition the client's decision-makers could act on.</h1>
+<div style="position:relative;height:2px;background:#17181A"><span style="position:absolute;right:0;top:-5px;width:12px;height:12px;background:#B8641C"></span></div>
+<div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:48px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="font:400 11px/1 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#6E685C">how it was enabled</div>
+<p style="margin:0;font:400 17px/1.55 'Instrument Sans',sans-serif">A multi-year enterprise healthcare engagement, contested by international competitors. The problem was not a lack of capability — it was that the proposition was too complex for the people who had to say yes. I led the market research, MVP strategy and solution planning, and shaped a phased roadmap so each phase had a decision attached to it.</p>
+<x-import component-from-global-scope="DesignSystem_79e114.DecisionLine" kind="decision" reopens="the client's phase-one exit criteria change" hint-size="100%,70px">Phase the roadmap around the client's decisions, not our delivery plan.</x-import>
+</div>
+<x-import component-from-global-scope="DesignSystem_79e114.EvidenceStrip" items="{{ outcomes }}" hint-size="100%,200px"></x-import>
+</div>
+<h2 style="margin:24px 0 0;font:500 24px/1.2 'Instrument Sans',sans-serif;letter-spacing:-.015em">Judgment</h2>
+<x-import component-from-global-scope="DesignSystem_79e114.ProgressionLadder" current="{{ 4 }}" steps="{{ steps }}" hint-size="100%,110px"></x-import>
+<p style="margin:0;font:400 17px/1.55 'Instrument Sans',sans-serif;max-width:64ch">What I chose not to do: present the whole platform as one commitment; quote a contract value; claim sole credit. The win was a team outcome and the wording here is the wording I can stand behind.</p>
+<h2 style="margin:24px 0 0;font:500 24px/1.2 'Instrument Sans',sans-serif;letter-spacing:-.015em">What was built or changed</h2>
+<x-import component-from-global-scope="DesignSystem_79e114.Matrix" caption="Work products and their evidence strength" columns="{{ cols }}" rows="{{ rows }}" hint-size="100%,220px"></x-import>
+<x-import component-from-global-scope="DesignSystem_79e114.ConsequenceNote" who="the client's decision-makers" hint-size="100%,80px">Each phase came with a question they could answer, instead of a platform they had to believe in.</x-import>
+<x-import component-from-global-scope="DesignSystem_79e114.CounterpointRail" hint-size="100%,60px">Phasing trades speed for decidability. If the client had wanted a single commitment, this structure would have slowed us down.</x-import>
+<x-import component-from-global-scope="DesignSystem_79e114.HandoffFooter" certainty="confirmed" release="approved" state-label="Wording approved for external use" next="verify shipped vs proposed scope before adding delivery claims" owner="S. Asif" artifact="proof story (internal)" version="v1" date="2026-09-11" hint-size="100%,80px"></x-import>
+<x-import component-from-global-scope="DesignSystem_79e114.Provenance" sources="{{ sources }}" version="v1" date="2026-09-11" changed="figures removed; Claims Register wording only" hint-size="100%,60px"></x-import>
+</article>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      outcomes: [
+        {label:'win', value:'multi-year enterprise healthcare engagement, against international competitors', certainty:'confirmed', source:'claims register'},
+        {label:'my part', value:'led market research, MVP strategy, solution planning, phased roadmap', certainty:'confirmed', source:'role record'},
+        {label:'contract value', value:'not stated', certainty:'confirmed', gated:{gate:'never external', owner:'claims register'}},
+        {label:'measured client outcome', value:'not measured', certainty:'unknown'},
+        {label:'shipped vs proposed', value:'unresolved', certainty:'provisional', gated:{gate:'DEC-016', owner:'S. Asif', clears:'delivery scope confirmed'}}
+      ],
+      steps: [
+        {label:'Signal', note:'proposition too complex to say yes to'},{label:'Framing', note:'which decision each phase enables'},{label:'Validation', note:'market research', certainty:'confirmed'},
+        {label:'Structure', note:'MVP strategy + phased roadmap'},{label:'Decision', note:'client committed'},{label:'Delivery', note:'scope unresolved', certainty:'provisional', gated:{gate:'DEC-016'}}
+      ],
+      cols: ['Evidence strength','External use','Note'],
+      rows: [
+        {label:'Market research', cells:[{value:'confirmed', certainty:'confirmed'}, 'yes', 'method only, no data']},
+        {label:'MVP strategy & solution plan', emphasis:true, cells:[{value:'confirmed', certainty:'confirmed'}, 'yes', 'anonymised']},
+        {label:'Phased roadmap', cells:[{value:'confirmed', certainty:'confirmed'}, 'yes', 'structure, not contents']},
+        {label:'Delivered integration', cells:[{value:'not claimed', certainty:'provisional', gated:{gate:'DEC-016'}}, 'no', 'readiness only']}
+      ],
+      sources: ['Claims & Verification Register — CV and Positioning (internal)', 'PureLogics role record (internal)']
+    };
+  }
+}
+</script>
+</body>
+</html>

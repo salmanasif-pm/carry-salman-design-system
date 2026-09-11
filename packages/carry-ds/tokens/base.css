@@ -1,0 +1,9 @@
+/* Carry — base. Minimal resets; links; selection. */
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font-body);font-size:var(--text-body);line-height:var(--lh-body);text-wrap:pretty;-webkit-font-smoothing:antialiased}
+a{color:var(--signal-text);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--ink);text-decoration-color:var(--signal)}
+::selection{background:var(--signal-subtle);color:var(--ink)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+/* Print: graphite grounds invert to paper so ink rules and fills survive on white stock. */
+@media print{[data-carry-ground="graphite"]{--ground:#FFFFFF;--surface:#FFFFFF;--surface-sunken:#F1EEE7;--ink:#17181A;--ink-2:#4A4C52;--ink-3:#6E685C;--ink-4:#9B958A;--rule:#D6D0C4;--rule-strong:#17181A;--signal:#B8641C;--signal-text:#8C4A12;--signal-subtle:#F1DCC4;--warmth:#F1EEE7;--evidence:#4A4C52;--constraint:#17181A;--on-signal:#FFFFFF;--on-ink:#FFFFFF}body{background:#FFFFFF}}

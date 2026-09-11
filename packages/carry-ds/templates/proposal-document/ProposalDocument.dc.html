@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Proposal document" description="Printable recommendation: direction / consequence form. Decision line first, evidence, boundary matrix, consequence, counterpoint, handoff. Ships with neutral placeholders — replace every [bracket]." -->
+<helmet><script src="./ds-base.js"></script></helmet>
+<article data-carry-mode="evidence" data-screen-label="Proposal document" style="max-width:816px;margin:0 auto;padding:64px;background:#F7F4EE;color:#17181A;font-family:'Instrument Sans',system-ui,sans-serif;box-sizing:border-box;display:flex;flex-direction:column;gap:24px">
+<header style="display:flex;justify-content:space-between;align-items:flex-start;font:400 11px/1.5 'Geist Mono',monospace;color:#6E685C"><div>proposal · for [reader]<br>one decision · one ask</div><div style="text-align:right">[version] · [date]<br>template placeholders — replace before use</div></header>
+<div style="font:400 11px/1 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#6E685C;margin-top:24px">the direction</div>
+<h1 style="margin:0;font:500 44px/1 'Instrument Sans',sans-serif;letter-spacing:-.03em;text-wrap:balance">[One sentence: what you are recommending.]</h1>
+<div style="position:relative;height:2px;background:#17181A"><span style="position:absolute;left:0;top:-5px;width:12px;height:12px;background:#B8641C"></span></div>
+<div style="font:400 11px/1 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#6E685C">what it changes</div>
+<x-import component-from-global-scope="DesignSystem_79e114.EvidenceStrip" items="{{ evidence }}" hint-size="100%,150px"></x-import>
+<x-import component-from-global-scope="DesignSystem_79e114.DecisionLine" kind="recommendation" reopens="[the condition that would change this recommendation]" hint-size="100%,80px">[The recommendation in one sentence, with who does what by when.]</x-import>
+<h2 style="margin:24px 0 0;font:500 24px/1.2 'Instrument Sans',sans-serif;letter-spacing:-.015em">Why this, and why now</h2>
+<p style="margin:0;font:400 17px/1.55 'Instrument Sans',sans-serif;max-width:64ch">[Two or three paragraphs. Name the visible situation, then what is actually going on underneath it, then why that distinction changes the decision. Plain language; the sharp line once, if earned.]</p>
+<x-import component-from-global-scope="DesignSystem_79e114.Matrix" caption="Own · support · outside — [scope window]" columns="{{ matrixCols }}" rows="{{ matrixRows }}" hint-size="100%,220px"></x-import>
+<x-import component-from-global-scope="DesignSystem_79e114.ConsequenceNote" who="[the people this changes things for]" hint-size="100%,90px">[One sentence on what changes for them on day one.]</x-import>
+<x-import component-from-global-scope="DesignSystem_79e114.CounterpointRail" hint-size="100%,60px">[The strongest objection, and what would make it right.]</x-import>
+<x-import component-from-global-scope="DesignSystem_79e114.HandoffFooter" certainty="provisional" release="internal" state-label="Draft" next="[decision · by date]" owner="[named owner]" artifact="[next artifact]" version="[v]" date="[date]" hint-size="100%,80px"></x-import>
+<x-import component-from-global-scope="DesignSystem_79e114.Provenance" sources="{{ sources }}" version="[v]" hint-size="100%,60px"></x-import>
+</article>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      evidence: [
+        {label:'[fact]', value:'[what is known]', certainty:'confirmed', source:'[source]'},
+        {label:'[estimate]', value:'[working figure and its scope]', certainty:'provisional'},
+        {label:'[gap]', value:'[what has not been asked]', certainty:'unknown'},
+        {label:'[blocked]', value:'[what waits on whom]', certainty:'confirmed', gated:{gate:'[gate]', owner:'[owner]', clears:'[condition]'}}
+      ],
+      matrixCols: ['Decision rights','Working context','Next action'],
+      matrixRows: [
+        {label:'Own', emphasis:true, cells:['[what we decide]', {value:'[full / shared]', certainty:'confirmed'}, '[action · date]']},
+        {label:'Support', cells:['[what we help with]', '[shared artefact]', {value:'[open]', certainty:'provisional'}]},
+        {label:'Outside', note:'this commitment', cells:['[what is out of scope]', '—', {value:'[reconsider when]', certainty:'provisional', gated:{gate:'[gate]'}}]}
+      ],
+      sources: ['[source 1]', '[source 2]']
+    };
+  }
+}
+</script>
+</body>
+</html>

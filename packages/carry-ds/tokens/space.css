@@ -1,0 +1,18 @@
+/* Carry — space, grid, measure. Base 4. Density multiplies via --density (mode). */
+:root{
+--sp-1:2px;--sp-2:4px;--sp-3:8px;--sp-4:12px;--sp-5:16px;--sp-6:24px;--sp-7:32px;--sp-8:48px;--sp-9:64px;--sp-10:96px;--sp-11:128px;
+/* Semantic spacing */
+--gap-truth:calc(var(--sp-3) / var(--density,1));      /* between truth-register rows */
+--gap-block:calc(var(--sp-6) / var(--density,1));      /* between blocks below the threshold */
+--gap-section:calc(var(--sp-8) / var(--density,1));
+--pad-artifact:var(--sp-7);                            /* inner margin of a social tile */
+--pad-slide:var(--sp-10);                              /* 1920×1080 slide margin */
+--pad-page:var(--sp-9);                                /* document margin */
+--threshold-gap:var(--sp-5);                           /* space above and below the rule */
+/* Grid */
+--grid-cols:12;/* @kind other */--grid-gutter:var(--sp-6);
+--measure:64ch;/* @kind spacing */--measure-narrow:44ch;/* @kind spacing */
+/* Fixed formats */
+--fmt-social-square:1080px;/* @kind spacing */--fmt-social-portrait-w:1080px;/* @kind spacing */--fmt-social-portrait-h:1350px;/* @kind spacing */
+--fmt-slide-w:1920px;/* @kind spacing */--fmt-slide-h:1080px;/* @kind spacing */
+--fmt-page-w:816px;/* @kind spacing */--fmt-page-h:1056px}

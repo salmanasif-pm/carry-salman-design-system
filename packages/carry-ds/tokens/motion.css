@@ -1,0 +1,30 @@
+/* Carry — motion. Six semantic roles; every role has a static equivalent (the settled state).
+   No loops. No bounces. No motion above the threshold except 'attract'. */
+:root{
+--dur-attract:480ms;/* @kind other */--dur-orient:320ms;/* @kind other */--dur-confirm:160ms;/* @kind other */--dur-progress:640ms;/* @kind other */--dur-converge:480ms;/* @kind other */--dur-release:240ms;/* @kind other */
+--ease-standard:cubic-bezier(.2,0,0,1);/* @kind other */   /* decelerate — arrive, settle */
+--ease-enter:cubic-bezier(.05,.7,.1,1);/* @kind other */
+--ease-exit:cubic-bezier(.3,0,.8,.15);/* @kind other */
+--ease-linear:linear;/* @kind other */
+
+/* Role → behaviour
+   attract  : handle fades/rises in (opacity 0→1, 8px rise)
+   orient   : threshold rule draws left→right; tick appears at end
+   confirm  : a state mark fills (outline → solid) — the only fill transition allowed
+   progress : ladder steps reveal in sequence, 80ms stagger
+   converge : truth rows slide to alignment under the decision line
+   release  : handoff footer fades in last; nothing else moves after it */
+--stagger:80ms;/* @kind other */
+}
+@keyframes carry-attract{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes carry-orient{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes carry-release{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){:root{
+--dur-attract:0ms;/* @kind other */
+--dur-orient:0ms;/* @kind other */
+--dur-confirm:0ms;/* @kind other */
+--dur-progress:0ms;/* @kind other */
+--dur-converge:0ms;/* @kind other */
+--dur-release:0ms;/* @kind other */
+--stagger:0ms;/* @kind other */
+}}

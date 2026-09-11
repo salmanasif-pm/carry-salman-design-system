@@ -1,0 +1,82 @@
+/* Carry — semantic roles. Components read ONLY these.
+   Roles from the brief §11: Ground · Surface · Ink · Signal · Warmth · Evidence · Constraint.
+   Truth STATE is never colour — see shape.css fill grammar. */
+:root,[data-carry-ground="paper"]{
+--ground:var(--carry-paper-1);
+--surface:var(--carry-paper-0);
+--surface-sunken:var(--carry-paper-2);
+--ink:var(--carry-ink-0);
+--ink-2:var(--carry-ink-2);
+--ink-3:var(--carry-ink-3);
+--ink-4:var(--carry-ink-4);
+--rule:var(--carry-paper-3);
+--rule-strong:var(--carry-ink-0);
+--signal:var(--carry-ochre-2);
+--signal-text:var(--carry-ochre-3);   /* AA on paper for text-size use */
+--signal-subtle:var(--carry-ochre-0);
+--warmth:var(--carry-paper-2);         /* consequence notes sit on this */
+--evidence:var(--carry-ink-2);         /* mono truth register */
+--constraint:var(--carry-ink-0);       /* boundaries are ink, never red */
+--on-signal:var(--carry-paper-0);
+--on-ink:var(--carry-paper-0);
+--focus:var(--carry-ochre-2);
+--text-body:var(--ink);--text-secondary:var(--ink-2);--text-tertiary:var(--ink-3);
+--surface-page:var(--ground);--surface-card:var(--surface)}
+/* Graphite ground — transitions, closers, personal mode. Never the default. */
+[data-carry-ground="graphite"]{
+--ground:var(--carry-graphite-0);
+--surface:var(--carry-graphite-1);
+--surface-sunken:var(--carry-graphite-2);
+--ink:var(--carry-graphite-ink);
+--ink-2:var(--carry-graphite-ink-2);
+--ink-3:var(--carry-graphite-ink-3);
+--ink-4:var(--carry-graphite-3);
+--rule:var(--carry-graphite-2);
+--rule-strong:var(--carry-graphite-ink);
+--signal:var(--carry-ochre-1);
+--signal-text:var(--carry-ochre-1);
+--signal-subtle:rgba(184,100,28,.18);
+--warmth:var(--carry-graphite-1);
+--evidence:var(--carry-graphite-ink-2);
+--constraint:var(--carry-graphite-ink);
+--on-signal:var(--carry-graphite-0);
+--on-ink:var(--carry-graphite-0);
+--text-body:var(--ink);--text-secondary:var(--ink-2);--text-tertiary:var(--ink-3);
+--surface-page:var(--ground);--surface-card:var(--surface)}
+/* Context modes — the atmosphere varies; the signature does not.
+   threshold-at: where the rule sits (fraction of height). provenance-lines: how much truth register is public. */
+:root,[data-carry-mode="executive"]{
+--threshold-at:.62;/* @kind other */
+--density:1;/* @kind other */
+--provenance-lines:2;/* @kind other */
+--measure:64ch;/* @kind spacing */
+--truth-scale:1;/* @kind other */
+}
+[data-carry-mode="social"]{
+--threshold-at:.55;/* @kind other */
+--density:.9;/* @kind other */
+--provenance-lines:1;/* @kind other */
+--measure:28ch;/* @kind spacing */
+--truth-scale:1.05;/* @kind other */
+}
+[data-carry-mode="systems"]{
+--threshold-at:.28;/* @kind other */
+--density:1.25;/* @kind other */
+--provenance-lines:99;/* @kind other */
+--measure:80ch;/* @kind spacing */
+--truth-scale:.95;/* @kind other */
+}
+[data-carry-mode="evidence"]{
+--threshold-at:.34;/* @kind other */
+--density:1.15;/* @kind other */
+--provenance-lines:99;/* @kind other */
+--measure:72ch;/* @kind spacing */
+--truth-scale:1;/* @kind other */
+}
+[data-carry-mode="personal"]{
+--threshold-at:.6;/* @kind other */
+--density:.85;/* @kind other */
+--provenance-lines:1;/* @kind other */
+--measure:56ch;/* @kind spacing */
+--truth-scale:1;/* @kind other */
+}

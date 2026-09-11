@@ -1,0 +1,21 @@
+/* Carry — shape, stroke, elevation, and the FILL GRAMMAR.
+   Corners are square. Nothing floats. Meaning is fill, not colour. */
+:root{
+--radius-0:0;--radius-control:2px;--radius-pill:999px; /* pill only for the wordmark lockup on photos */
+--stroke-hair:1px;/* @kind spacing */--stroke:1.5px;/* @kind spacing */--stroke-strong:2px;/* @kind spacing */--stroke-threshold:2px;/* @kind spacing */
+--tick-size:12px;/* @kind spacing */                       /* the single ochre tick on the threshold */
+--shadow-none:none;
+--shadow-float:0 1px 0 var(--rule),0 12px 32px -16px rgba(23,24,26,.35); /* floating UI only (menus, dialogs) */
+/* State grammar — three separate axes (docs/state-architecture.md).
+   A certainty (fill): confirmed solid · provisional outline · unknown hatched · superseded faded (operating history only)
+   B actionability (overlay): gated = horizontal bar across the mark; a gate names gate · owner · what clears it
+   C release (text tag only, never colour): internal · review required · approved · restricted */
+--fill-confirmed:var(--ink);/* @kind color */
+--fill-provisional:transparent;/* @kind color */
+--fill-unknown:repeating-linear-gradient(135deg,var(--ink) 0 1.5px,transparent 1.5px 5px);/* @kind color */
+--fill-superseded:var(--ink-4);/* @kind color */
+--gate-bar:var(--ink);/* @kind color */
+--gate-bar-size:.36em;/* @kind spacing */
+/* Connector certainty in diagrams */
+--connector-confirmed:solid;/* @kind other */--connector-provisional:dashed;/* @kind other */--connector-unknown:dotted;/* @kind other */
+}
