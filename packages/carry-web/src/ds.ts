@@ -2,7 +2,7 @@
 // packages/carry-ds, typed by their sibling .d.ts files. Nothing here redefines a token or a prop.
 import '@carry-ds/styles.css';
 
-export { Composition } from '@carry-ds/components/signature/Composition.jsx';
+export { Composition, CARRY_FORMS, type CarryForm } from '@carry-ds/components/signature/Composition.jsx';
 export { HandleTruth } from '@carry-ds/components/signature/HandleTruth.jsx';
 export { Threshold } from '@carry-ds/components/signature/Threshold.jsx';
 export { StateMark, normalizeState } from '@carry-ds/components/signature/StateMark.jsx';
@@ -22,12 +22,8 @@ export { Matrix } from '@carry-ds/components/data/Matrix.jsx';
 export { Wordmark } from '@carry-ds/components/brand/Wordmark.jsx';
 export { Button } from '@carry-ds/components/core/Button.jsx';
 
-import type { ComponentProps } from 'react';
-import type { Composition as CompositionType } from '@carry-ds/components/signature/Composition.jsx';
-
-/** The seven forms, typed against the component's own prop union. CARRY_FORMS in the .jsx is not declared in its .d.ts. */
-export type CarryForm = NonNullable<ComponentProps<typeof CompositionType>['form']>;
-export const CARRY_FORM_KEYS = ['handle-truth', 'claim-support', 'outcome-enabled', 'question-conditions', 'direction-consequence', 'intention-reflection', 'observation-development'] as const satisfies readonly CarryForm[];
+import { CARRY_FORMS as FORMS_RUNTIME, type CarryForm as CarryFormType } from '@carry-ds/components/signature/Composition.jsx';
+export const CARRY_FORM_KEYS = Object.keys(FORMS_RUNTIME) as CarryFormType[];
 
 export const CARRY_MODES = ['executive', 'social', 'systems', 'evidence', 'personal'] as const;
 export type CarryMode = (typeof CARRY_MODES)[number];

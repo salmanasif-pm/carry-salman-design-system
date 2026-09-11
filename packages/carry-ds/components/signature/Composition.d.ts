@@ -14,3 +14,6 @@ export interface CompositionProps {
   style?: React.CSSProperties;
 }
 export function Composition(props: CompositionProps): JSX.Element;
+/** The seven forms with their default labels, tick function and lead prefix. Exported by Composition.jsx; declared here so typed consumers can iterate the family. */
+export type CarryForm = NonNullable<CompositionProps['form']>;
+export const CARRY_FORMS: Record<CarryForm, { above: string; below: string; fn: 'decision' | 'evidence' | 'progression' | 'transition' | 'reflection' | 'separation'; lead: string }>;

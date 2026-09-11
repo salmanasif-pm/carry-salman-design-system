@@ -20,7 +20,7 @@ Everything in the project, including:
 | `guidelines/` | 20 foundation cards |
 | `templates/` | 8 templates + `ds-base.js` per template |
 | `docs/` | state architecture, rules, governance, accessibility, engine integration, Notion/web, roadmap, delta report, this manifest |
-| `scripts/release-check.js` | restricted-content, placeholder, claims and public-build scan |
+| `scripts/release-check.cjs` (+ `.js` entry) | restricted-content, placeholder, claims and public-build scan |
 | `thumbnail.html` | homepage tile |
 | `_ds_bundle.js`, `_ds_manifest.json`, `_adherence.oxlintrc.json` | compiled outputs |
 

@@ -165,7 +165,7 @@ Content kind is declared in each `@template` description and visible in the arti
 - `guidelines/` — 20 foundation specimen cards (Colors 4, States 3, Type 3, Spacing 3, Brand 4, Motion 1, Voice 2).
 - `templates/` — eight starting templates (above).
 - `docs/` — `delta-report-v0.9.1.md`, `state-architecture.md`, `rules.md`, `package-manifest.md`, `engine-integration.md`, `governance.md`, `accessibility.md`, `notion-web.md`, `roadmap.md`, `evidence/` (mobile screenshots).
-- `scripts/release-check.js` — restricted-content / placeholder / claims / public-build scan.
+- `scripts/release-check.cjs` — restricted-content / placeholder / claims / public-build scan (`release-check.js` is a thin entry that loads it; `docs/decisions/0007`).
 - `strategy/` — Phase A interpretation and the Checkpoint 1 decision document (internal package only).
 - `SKILL.md`, `CLAUDE.md` — agent guidance for generating new artifacts consistently.
 - `thumbnail.html` — homepage tile.
