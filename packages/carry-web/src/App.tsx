@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { InteractiveThreshold } from './InteractiveThreshold';
 import { CARRY_FORM_KEYS, CARRY_MODES, Composition, HandoffFooter, StateMark, Threshold, Wordmark, type CarryMode } from './ds';
 
 // Scaffold page: proves the workspace consumes the canonical package end to end.
@@ -28,6 +29,8 @@ export function App() {
           ))}
         </nav>
       </header>
+
+      <InteractiveThreshold />
 
       <section aria-labelledby="forms">
         <h2 id="forms" style={label}>seven forms · [placeholder] content</h2>

@@ -14,7 +14,7 @@
     "test": "pnpm -r --if-present test",
     "build": "pnpm -r --if-present build",
     "dev": "pnpm --filter carry-web dev",
-    "ci": "pnpm check:release && pnpm check:deps && pnpm typecheck && pnpm test && pnpm build"
+    "ci": "pnpm check:release && pnpm check:deps && pnpm build && pnpm typecheck && pnpm test"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0"

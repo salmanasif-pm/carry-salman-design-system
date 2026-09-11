@@ -24,3 +24,14 @@ export const SOURCE_KINDS = ['internal', 'restricted', 'public', 'self-reported'
 
 /** Motion roles (tokens/motion.css). Engine presets map onto them in engine-integration §4; count-up and flow-pulse are disabled. */
 export const MOTION_ROLES = ['attract', 'orient', 'confirm', 'progress', 'converge', 'release'] as const;
+
+/** Default labels, tick function and lead prefix per form. Mirror of CARRY_FORMS in packages/carry-ds/components/signature/Composition.jsx; test/vocab-drift.test.ts fails if they diverge. */
+export const FORM_LABELS: Record<(typeof FORMS)[number], { above: string; below: string; fn: 'decision' | 'evidence' | 'progression' | 'transition' | 'reflection' | 'separation'; lead: string }> = {
+  'handle-truth':            { above: 'the handle',      below: 'what is actually going on', fn: 'decision',    lead: 'Decision underneath' },
+  'claim-support':           { above: 'the claim',       below: 'the support',               fn: 'evidence',    lead: 'So' },
+  'outcome-enabled':         { above: 'the outcome',     below: 'how it was enabled',        fn: 'progression', lead: 'Next' },
+  'question-conditions':     { above: 'the question',    below: 'what it depends on',        fn: 'evidence',    lead: 'Open' },
+  'direction-consequence':   { above: 'the direction',   below: 'what it changes',           fn: 'decision',    lead: 'Recommendation' },
+  'intention-reflection':    { above: 'the intention',   below: 'what actually happened',    fn: 'reflection',  lead: 'Kept' },
+  'observation-development': { above: 'the observation', below: 'where it might go',         fn: 'transition',  lead: 'Still forming' },
+};
