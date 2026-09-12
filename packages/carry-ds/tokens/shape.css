@@ -18,7 +18,7 @@
 --stroke-assumed:dotted;/* @kind other */
 --gate-bar:var(--ink);/* @kind color */
 --gate-bar-size:.36em;/* @kind spacing */
-/* INTERNAL watermark — never ochre, never a colour */
+/* INTERNAL watermark — never ochre, never a colour: ink at low alpha over the whole artifact + a solid ink top bar. */
 --watermark-ink:rgba(23,24,26,.12);/* @kind color */
 --watermark-bar:var(--ink);/* @kind color */
 --watermark-bar-size:8px;/* @kind spacing */

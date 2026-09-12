@@ -1,9 +1,17 @@
 {
   "schema_version": "1.0",
   "note": "Words that must not appear in text rendered for approved_public. Case-insensitive whole-word match unless 'substring' is set. Content side owns this list; extend it here, not in code.",
-  "terms": ["residue","source residue","tension gate","State A","State B","lineage","evidence grade","E1","E2","E3","E4","franchise","territory","gate","gated","Unknown stays Unknown","Risk Label","PS","NHR","DNU","Permitted Use","Voice Pass","objective layer","Content Brief"],
+  "terms": [
+    "residue", "source residue", "tension gate", "State A", "State B", "lineage", "evidence grade",
+    "E1", "E2", "E3", "E4", "franchise", "territory", "gate", "gated", "Unknown stays Unknown",
+    "Risk Label", "PS", "NHR", "DNU", "Permitted Use", "Voice Pass", "objective layer", "Content Brief"
+  ],
   "characters": [
-    {"codepoint":"U+2014","name":"em dash","rule":"block anywhere"},
-    {"codepoint":"U+2013","name":"en dash","rule":"block when surrounded by spaces"}
-  ]
+    {"codepoint": "U+2014", "name": "em dash", "rule": "block anywhere"},
+    {"codepoint": "U+2013", "name": "en dash", "rule": "block when surrounded by spaces"}
+  ],
+  "carry_chrome_exemptions_proposed": {
+    "note": "Component-rendered labels that would trip the list. Not exempt until Salman decides (see VOCABULARY_RECONCILIATION.md §3).",
+    "items": ["Matrix empty-cell glyph \u2014", "StateMark/Legend/HandoffFooter word 'gated' (use wording=\"plain\")"]
+  }
 }

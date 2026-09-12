@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "origin_type": "transcript",
+    "description": "Internal assessment grounded in a recorded discovery review, plus the BA Team Operating System framework and the Discovery Call Playbook.",
+    "is_derivative": false
+  },
+  "reader": {
+    "role": "Product managers, business analysts, account executives, consultants and technical leaders who sit in customer discovery calls.",
+    "situation": "Running discovery against a prepared question bank, under time pressure to produce a scope and an estimate."
+  },
+  "reader_state_a": "Judges discovery by coverage. A completed questionnaire and full notes feel like a job done well.",
+  "intended_state_b": "Judges discovery by progression. Asks whether the next question earned the answer that came before it.",
+  "observation": "In a discovery review, a customer disclosed that demand existed which the business could not fulfil. The conversation moved to the report. The disclosure was not followed up. Composite, principle level only.",
+  "tension": "The questionnaire was completed fully and the most consequential signal in the conversation was still missed, and that is uncomfortable because completeness is the thing most teams measure.",
+  "position_or_open_question": {
+    "mode": "position",
+    "text": "Discovery quality shows up in the question asked after the answer, not in the coverage of the question bank."
+  },
+  "consequence": "A business constraint gets converted into reporting functionality. The team scopes and estimates the wrong intervention, and the mistake surfaces after commitment.",
+  "narrative_form": "observation_reframe",
+  "channel": "LinkedIn",
+  "artifact_type": "text_post",
+  "evidence": [
+    {
+      "claim": "Multiple consequential disclosures were followed by unrelated, repeated, or primarily functional questions.",
+      "grade": "E3",
+      "link": "",
+      "register_status": "needs_evidence"
+    },
+    {
+      "claim": "The report mattered but was not yet the problem.",
+      "grade": "E3",
+      "link": "",
+      "register_status": "approved_wording"
+    }
+  ],
+  "certainty": "inferred",
+  "action_gate": "formal_approval_required",
+  "release_permission": "internal_only",
+  "confidentiality": {
+    "sensitivity": "internal",
+    "exclusions": [
+      "employer, client, prospect or partner name",
+      "individual names or identifying roles",
+      "location",
+      "referral count or any figure from the source",
+      "timestamps",
+      "transcript identifiers or quoted transcript lines"
+    ],
+    "composite": true
+  },
+  "audience_action": "Name the answer that would make you abandon your discovery script for five minutes, and say what you asked instead.",
+  "follow_up": {
+    "planned": true,
+    "description": "If replies produce real examples, publish a composite pattern note on which disclosures most often get converted into features. Requires its own gate."
+  },
+  "provenance": {
+    "derived_from": [],
+    "lineage_stage": "draft",
+    "grade_ceiling": "E3"
+  },
+  "human_approval_state": "needs_human_review",
+  "moves": {
+    "signal": "The customer showed us demand the business could not fulfil. We discussed the report.",
+    "structure": "fact, then consequence, then cause, then option, then decision. The conversation stopped at fact.",
+    "proof": "A completed question bank and a full set of notes are both compatible with a missed signal. Coverage and progression are different measures.",
+    "movement": "Judge discovery by whether the next question earned the answer before it."
+  },
+  "motion_opportunity": {
+    "role": "orient",
+    "static_equivalent": "A two-branch diagram: one branch returns to the checklist and ends in a report; the other follows the signal through consequence, cause, option, decision. Fully legible with no animation."
+  },
+  "measurement": {
+    "objective_layer": "participation",
+    "experiment": ""
+  },
+  "text": {
+    "body": "One line from a recent discovery review has stayed with me.\nThe customer showed us demand the business could not fulfil. We discussed the report.\nThe report mattered. But it was not yet the problem.\nThe next question should have been: what stopped you from fulfilling the work?\nThe answer could have changed the entire direction. Supply, pricing, geography, response time, credentials, coordination. Or something software would barely influence.\nInstead, the business signal was converted into reporting functionality.\nThat's the danger of discovery scripts. They can keep a conversation moving while the thinking stands still.\nI'm starting to judge discovery by a much smaller unit: did the next question earn the answer that came before it?\nWhat answer would make you abandon your discovery script for five minutes?",
+    "slides": [],
+    "regions": [],
+    "alt_text": "A discovery conversation branches between following a fixed checklist and following a business signal through consequence, cause, options, and decision.",
+    "poll_options": []
+  }
+}

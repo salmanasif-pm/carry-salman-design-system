@@ -41,32 +41,7 @@ Release is a **text tag**, never a colour. Approval never implies the fact is co
 ## Badge economy
 Default is no mark. Add certainty when it differs from what the reader would assume. Add a gate only where the reader might act. Add release only on artifacts that leave the operating environment.
 
-## v0.9.2 addendum — content-brief alignment (2026-09-12)
-
-Written from `CODEBASE_UPDATES_v0.9.2.md`; the design-side wording of this addendum was not shipped, so this
-records the decided behaviour.
-
-**Brief certainty map** (`BRIEF_CERTAINTY` in `StateMark.jsx`). The content brief's `certainty` vocabulary
-maps onto the three axes without a fourth: `confirmed` → confirmed · `inferred` → provisional, variant
-*inferred* (label only) · `assumed` → provisional, variant *assumed* (dotted outline, `--stroke-assumed`) ·
-`proposed` → provisional, variant *proposed* (horizontal hatch, `--fill-proposed`) · `gated` → unknown + gated
-· `unresolved` and `undefined` → unknown. A variant never changes the axis it sits on.
-
-**Plain wording rule.** `wording="plain"` on `StateMark` and `Matrix` swaps system vocabulary for public
-words: Confirmed → confirmed · Provisional → working view · Unknown → not yet settled · variants lower-case ·
-"gated on X" → "waiting on X" (or "waiting on a decision") · an empty Matrix cell "—" → "none". Public
-renders use plain wording; the fill grammar is unchanged, so meaning never depends on the words.
-
-**ReportBack.** Three fixed sections in fixed order (what came in · what changed · what could not be
-settled). The third is mandatory and never hidden; when empty it renders the literal "Not yet written".
-
-**InternalWatermark.** Rendered over any artifact that fails the release gate: repeated ink label at low
-alpha plus a solid ink bar (`--watermark-*` tokens). Never ochre, never a colour, and there is no prop to
-hide it: render it or do not render the artifact.
-
-**No gate override.** Nothing in a renderer, CLI or brief field can lift a gate, promote certainty or
-substitute approval. `release_permission === "approved_public"` and `human_approval_state ===
-"approved_by_salman"` are read as given; every other combination is internal.
-
-**Public vocabulary.** `scripts/banned-vocabulary.json` lists words banned from approved_public text
-(content side owns it); `release-check --public` warns on whole-word hits in `templates/**`.
+## v0.9.2 addendum — Content Brief alignment (accepted 2026-09-13)
+- Brief certainty maps through `BRIEF_CERTAINTY`: inferred → provisional (outline) · assumed → provisional, dotted outline (`--stroke-assumed`) · proposed → provisional, horizontal hatch (`--fill-proposed`) · gated → unknown + bar · unresolved / missing → unknown. Proposal to the content side: drop `gated` from certainty in schema v1.1 (it is `action_gate`).
+- Public wording: `StateMark wording="plain"` and `Matrix wording="plain"` on every public render (working view · not yet settled · waiting on {gate} · "none" for an empty cell). Lint scope is supplied text **and** component labels.
+- New: `ReportBack` (three fixed sections; third never hidden) and `InternalWatermark` (ink only, `--watermark-*` tokens). Release-gate failure ⇒ watermark or no render; no override.

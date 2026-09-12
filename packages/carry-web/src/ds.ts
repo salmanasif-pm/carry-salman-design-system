@@ -5,7 +5,7 @@ import '@carry-ds/styles.css';
 export { Composition, CARRY_FORMS, type CarryForm } from '@carry-ds/components/signature/Composition.jsx';
 export { HandleTruth } from '@carry-ds/components/signature/HandleTruth.jsx';
 export { Threshold } from '@carry-ds/components/signature/Threshold.jsx';
-export { StateMark, normalizeState, BRIEF_CERTAINTY, type BriefCertainty } from '@carry-ds/components/signature/StateMark.jsx';
+export { StateMark, normalizeState, BRIEF_CERTAINTY } from '@carry-ds/components/signature/StateMark.jsx';
 export { ReportBack } from '@carry-ds/components/signature/ReportBack.jsx';
 export { InternalWatermark } from '@carry-ds/components/signature/InternalWatermark.jsx';
 export { DecisionLine } from '@carry-ds/components/signature/DecisionLine.jsx';

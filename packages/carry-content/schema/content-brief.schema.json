@@ -1,0 +1,497 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://carry.salmanasif.dev/schema/content-brief.v1.json",
+  "title": "Content Brief v1",
+  "description": "Machine-readable Content Brief consumed by Carry (packages/carry-ds/docs/content-os/CONTENT_BRIEF_HANDOFF.md §6). Every object is closed; every enum is closed; the renderer never infers a missing field from another. Rules the schema cannot express fully live in bin/validate-brief.js and are repeated here where JSON Schema allows.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source",
+    "reader",
+    "tension",
+    "position_or_open_question",
+    "channel",
+    "artifact_type",
+    "certainty",
+    "release_permission",
+    "confidentiality",
+    "human_approval_state",
+    "moves",
+    "measurement",
+    "text"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "origin_type": {
+          "type": "string",
+          "enum": [
+            "meeting",
+            "transcript",
+            "document",
+            "repo",
+            "external_publication",
+            "personal_log",
+            "observation"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Confidentiality-safe; never names a real party."
+        },
+        "is_derivative": {
+          "const": false,
+          "description": "true is a lineage violation and fails validation."
+        }
+      },
+      "required": [
+        "origin_type",
+        "description",
+        "is_derivative"
+      ]
+    },
+    "reader": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "situation": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "role",
+        "situation"
+      ]
+    },
+    "reader_state_a": {
+      "type": "string"
+    },
+    "intended_state_b": {
+      "type": "string"
+    },
+    "observation": {
+      "type": "string",
+      "description": "2 to 6 lines."
+    },
+    "tension": {
+      "type": "string",
+      "minLength": 1
+    },
+    "position_or_open_question": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "position",
+            "open_question"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "mode",
+        "text"
+      ]
+    },
+    "consequence": {
+      "type": "string"
+    },
+    "narrative_form": {
+      "type": "string",
+      "enum": [
+        "observation_reframe",
+        "case_led",
+        "contrarian",
+        "question_led",
+        "teardown",
+        "checklist_with_boundary",
+        "decision_walkthrough",
+        "before_after_state",
+        "annotated_artifact",
+        "open_log"
+      ]
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "LinkedIn",
+        "Video",
+        "Newsletter",
+        "Podcast",
+        "Carousel",
+        "Workshop",
+        "Portfolio",
+        "Internal"
+      ]
+    },
+    "artifact_type": {
+      "type": "string",
+      "enum": [
+        "text_post",
+        "short_post",
+        "thread",
+        "carousel",
+        "long_form",
+        "diagram",
+        "video_script",
+        "talk_outline",
+        "worksheet",
+        "template",
+        "poll_card",
+        "annotated_artifact",
+        "report_back"
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "grade": {
+            "type": "string",
+            "enum": [
+              "E1",
+              "E2",
+              "E3",
+              "E4"
+            ]
+          },
+          "link": {
+            "type": "string"
+          },
+          "register_status": {
+            "type": "string",
+            "enum": [
+              "approved_wording",
+              "not_in_register",
+              "banned",
+              "needs_evidence"
+            ],
+            "not": {
+              "const": "banned"
+            },
+            "description": "banned fails validation: banned wording never renders."
+          }
+        },
+        "required": [
+          "claim",
+          "grade",
+          "register_status"
+        ]
+      }
+    },
+    "certainty": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "inferred",
+        "assumed",
+        "proposed",
+        "gated",
+        "unresolved"
+      ]
+    },
+    "action_gate": {
+      "type": "string",
+      "enum": [
+        "proceed_now",
+        "proceed_with_dependency",
+        "sandbox",
+        "research_further",
+        "roadmap_future",
+        "reject",
+        "formal_approval_required"
+      ]
+    },
+    "release_permission": {
+      "type": "string",
+      "enum": [
+        "internal_only",
+        "draft_shareable",
+        "approved_public"
+      ]
+    },
+    "confidentiality": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sensitivity": {
+          "type": "string",
+          "enum": [
+            "public",
+            "internal",
+            "employer-internal",
+            "client-confidential",
+            "PII"
+          ]
+        },
+        "exclusions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Lint targets: case-insensitive substring match against every visible text field."
+        },
+        "composite": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "sensitivity",
+        "exclusions",
+        "composite"
+      ]
+    },
+    "audience_action": {
+      "type": "string",
+      "not": {
+        "type": "string",
+        "pattern": "(^|[^A-Za-z])([Ff][Oo][Ll][Ll][Oo][Ww]|[Ss][Uu][Bb][Ss][Cc][Rr][Ii][Bb][Ee]|[Ss][Hh][Aa][Rr][Ee]|[Ll][Ii][Kk][Ee]|[Tt][Aa][Gg])([^A-Za-z]|$)"
+      },
+      "description": "Fails validation if it contains follow, subscribe, share, like or tag."
+    },
+    "follow_up": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "planned": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "planned"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "derived_from": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lineage_stage": {
+          "type": "string",
+          "enum": [
+            "source",
+            "evidence",
+            "interpretation",
+            "draft",
+            "human_revision",
+            "published",
+            "channel_adaptation",
+            "response",
+            "derivative_asset"
+          ]
+        },
+        "grade_ceiling": {
+          "type": "string",
+          "enum": [
+            "E1",
+            "E2",
+            "E3",
+            "E4"
+          ]
+        }
+      },
+      "required": []
+    },
+    "human_approval_state": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "ai_draft",
+        "human_first_draft",
+        "human_rewrite_done",
+        "voice_rubric_passed",
+        "failed_rubric",
+        "needs_human_review",
+        "approved_by_salman"
+      ]
+    },
+    "moves": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "signal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "structure": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proof": {
+          "type": "string",
+          "minLength": 1
+        },
+        "movement": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "signal",
+        "structure",
+        "proof",
+        "movement"
+      ]
+    },
+    "motion_opportunity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": [
+            "attract",
+            "orient",
+            "confirm",
+            "progress",
+            "converge",
+            "release",
+            "none"
+          ]
+        },
+        "static_equivalent": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "role"
+      ],
+      "if": {
+        "properties": {
+          "role": {
+            "not": {
+              "const": "none"
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "static_equivalent"
+        ],
+        "properties": {
+          "static_equivalent": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "description": "No static equivalent, no motion: static_equivalent must be non-empty when role is not none."
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "objective_layer": {
+          "type": "string",
+          "enum": [
+            "distribution",
+            "attention",
+            "participation",
+            "perception",
+            "routing",
+            "learning"
+          ]
+        },
+        "experiment": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "objective_layer"
+      ]
+    },
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "string",
+          "minLength": 1
+        },
+        "slides": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "anchor": {
+                "type": "string"
+              },
+              "bbox": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              }
+            },
+            "required": [
+              "id",
+              "label"
+            ]
+          }
+        },
+        "alt_text": {
+          "type": "string"
+        },
+        "poll_options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "body"
+      ]
+    }
+  }
+}

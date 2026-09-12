@@ -28,7 +28,9 @@ const OPERATING = [/certainty=["']superseded["']/, /state=["']superseded["']/, /
 const VOCAB = PUBLIC ? JSON.parse(fs.readFileSync(path.join(__dirname, 'banned-vocabulary.json'), 'utf8')) : null;
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const VOCAB_RE = VOCAB ? VOCAB.terms.map((t) => ({ term: t, re: new RegExp((t.substring ? '' : '\\b') + esc(typeof t === 'string' ? t : t.term) + (t.substring ? '' : '\\b'), 'i') })) : [];
-const ALLOW_OPERATING_DEMO = ['components/signature/signature.card.html','guidelines/states-certainty.html','guidelines/states-release.html','components/signature/StateMark.prompt.md'];
+const ALLOW_OPERATING_DEMO = ['components/signature/signature.card.html','guidelines/states-certainty.html','guidelines/states-release.html','components/signature/StateMark.prompt.md',
+  // content-OS mapping docs describe how operating-only values are produced; they are not rendered states
+  'docs/content-os/FIELD_TO_COMPONENT_MAP.md','docs/content-os/VOCABULARY_RECONCILIATION.md'];
 
 function walk(dir, out=[]) { for (const n of fs.readdirSync(dir)) { const p = path.join(dir, n); const rel = path.relative(ROOT, p).split(path.sep).join('/'); if (SKIP.some(r=>r.test(rel))) continue; const st = fs.statSync(p); if (st.isDirectory()) walk(p, out); else if (TEXT.test(n)) out.push(rel); } return out; }
 const files = walk(ROOT); const fails = [], warns = [];

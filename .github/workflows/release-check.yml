@@ -31,6 +31,7 @@ jobs:
       - run: pnpm build
       - run: pnpm typecheck
       - run: pnpm test
+      - run: pnpm validate:briefs
       # Export smoke: CI provisions its own browser (the dev environment is preprovisioned and never runs install).
       - run: npx playwright install chromium --with-deps
       - name: render + export + mobile check on the placeholder examples

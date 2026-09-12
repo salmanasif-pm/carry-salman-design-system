@@ -14,6 +14,7 @@ const ALLOW = new Map([
   ['vitest', 'test runner'], ['zod', 'content schema validation (task 3)'],
   ['@playwright/test', 'export and mobile check (tasks 5, 6)'], ['playwright', 'export and mobile check (tasks 5, 6)'],
   ['@ladle/react', 'component stories with controls (task 8) — packages/carry-ds/docs/decisions/0010-dependency-ladle.md'],
+  ['ajv', 'JSON Schema 2020-12 validation of Content Briefs — packages/carry-ds/docs/decisions/0012-dependency-ajv.md'],
   ['pptxgenjs', 'PPTX export with native text — packages/carry-ds/docs/decisions/0009-dependency-pptxgenjs.md'],
 ]);
 const DENY = [/^@mui\//, /^@material-ui/, /^antd$/, /^@ant-design/, /^@chakra-ui/, /^bootstrap$/, /^react-bootstrap$/, /tailwind/, /^daisyui$/, /shadcn/, /^@radix-ui/, /^@headlessui/, /^@emotion/, /^styled-components$/, /^framer-motion$/, /^motion$/, /^gsap$/, /^animejs$/, /^lottie/, /icons?$/i, /^@fortawesome/, /^lucide/];

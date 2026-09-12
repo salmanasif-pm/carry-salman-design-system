@@ -1,10 +1,12 @@
 import React from 'react';
 export const CARRY_CERTAINTY = ['confirmed','provisional','unknown'];
+/** Content Brief v1 certainty → Carry certainty + variant. 'gated' is not a certainty: unknown + gate. Missing → unresolved. */
 export const BRIEF_CERTAINTY = {confirmed:{certainty:'confirmed'},inferred:{certainty:'provisional',variant:'inferred'},assumed:{certainty:'provisional',variant:'assumed'},proposed:{certainty:'provisional',variant:'proposed'},gated:{certainty:'unknown',gated:true},unresolved:{certainty:'unknown'},undefined:{certainty:'unknown'}};
 export const CARRY_OPERATING_CERTAINTY = ['superseded'];
 export const CARRY_RELEASE = ['internal','review','approved','restricted'];
 const CLABEL = {confirmed:'Confirmed',provisional:'Provisional',unknown:'Unknown',superseded:'Superseded'};
 const RLABEL = {internal:'internal',review:'review required',approved:'approved',restricted:'restricted'};
+/** Plain wording for public renders — none of these words appear in scripts/banned-vocabulary.json. */
 const PLAIN = {confirmed:'confirmed',provisional:'working view',unknown:'not yet settled',superseded:'superseded'};
 const VLABEL = {inferred:'Inferred',assumed:'Assumed',proposed:'Proposed'};
 /** Legacy single key → axes. 'gated' was never a certainty: it maps to provisional + gated. */
