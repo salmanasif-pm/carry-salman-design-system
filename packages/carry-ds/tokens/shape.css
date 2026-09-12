@@ -14,8 +14,14 @@
 --fill-provisional:transparent;/* @kind color */
 --fill-unknown:repeating-linear-gradient(135deg,var(--ink) 0 1.5px,transparent 1.5px 5px);/* @kind color */
 --fill-superseded:var(--ink-4);/* @kind color */
+--fill-proposed:repeating-linear-gradient(0deg,var(--ink) 0 1.5px,transparent 1.5px 5px);/* @kind color */
+--stroke-assumed:dotted;/* @kind other */
 --gate-bar:var(--ink);/* @kind color */
 --gate-bar-size:.36em;/* @kind spacing */
+/* INTERNAL watermark — never ochre, never a colour */
+--watermark-ink:rgba(23,24,26,.12);/* @kind color */
+--watermark-bar:var(--ink);/* @kind color */
+--watermark-bar-size:8px;/* @kind spacing */
 /* Connector certainty in diagrams */
 --connector-confirmed:solid;/* @kind other */--connector-provisional:dashed;/* @kind other */--connector-unknown:dotted;/* @kind other */
 }

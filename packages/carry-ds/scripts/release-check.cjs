@@ -24,6 +24,10 @@ const CLAIMS_BANNED = [/decade of experience/i, /over the last decade/i, /CBAP/,
 const PLACEHOLDER = [/example\.com/i, /\+1 000 000 0000/, /Toronto/, /J\. Ortiz/, /salman@example/i];
 // Operating-only states — fail public builds
 const OPERATING = [/certainty=["']superseded["']/, /state=["']superseded["']/, /state=["']proposed["']/, /release=["'](internal|restricted)["']/];
+// Public vocabulary (v0.9.2): words the content side bans from approved_public text. Warn on whole-word hits in templates/**; the list lives in banned-vocabulary.json, not here.
+const VOCAB = PUBLIC ? JSON.parse(fs.readFileSync(path.join(__dirname, 'banned-vocabulary.json'), 'utf8')) : null;
+const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const VOCAB_RE = VOCAB ? VOCAB.terms.map((t) => ({ term: t, re: new RegExp((t.substring ? '' : '\\b') + esc(typeof t === 'string' ? t : t.term) + (t.substring ? '' : '\\b'), 'i') })) : [];
 const ALLOW_OPERATING_DEMO = ['components/signature/signature.card.html','guidelines/states-certainty.html','guidelines/states-release.html','components/signature/StateMark.prompt.md'];
 
 function walk(dir, out=[]) { for (const n of fs.readdirSync(dir)) { const p = path.join(dir, n); const rel = path.relative(ROOT, p).split(path.sep).join('/'); if (SKIP.some(r=>r.test(rel))) continue; const st = fs.statSync(p); if (st.isDirectory()) walk(p, out); else if (TEXT.test(n)) out.push(rel); } return out; }
@@ -36,6 +40,12 @@ for (const f of files) {
   for (const re of PLACEHOLDER) { const m = t.match(re); if (m && !ledger) fails.push(`[placeholder-identity] ${f} :: ${m[0]}`); }
   for (const re of RESTRICTED) { const m = t.match(re); if (m && !RESTRICTED_ALLOW.includes(f)) fails.push(`[restricted-name] ${f} :: ${m[0]}`); }
   if (PUBLIC) for (const re of OPERATING) { const m = t.match(re); if (m && !ALLOW_OPERATING_DEMO.includes(f)) fails.push(`[operating-only-in-public] ${f} :: ${m[0]}`); }
+  if (PUBLIC && /^templates\//.test(f)) {
+    const text = t.replace(/<script[^>]*>[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ');
+    for (const { term, re } of VOCAB_RE) { const m = text.match(re); if (m) warns.push(`[public-vocabulary] ${f} :: "${m[0]}"`); }
+    if (/\u2014/.test(text)) warns.push(`[public-vocabulary] ${f} :: em dash (U+2014) — blocked anywhere in public text`);
+    if (/ \u2013 /.test(text)) warns.push(`[public-vocabulary] ${f} :: en dash (U+2013) surrounded by spaces`);
+  }
   // Numeric figures presented as confirmed outside the Claims Register set
   const nums = t.match(/certainty:\s*'confirmed'[^}]*value:\s*'[^']*\d[^']*'/g) || [];
   for (const n of nums) if (!/claims register|role record|wording/i.test(n)) warns.push(`[figure-as-confirmed] ${f} :: ${n.slice(0,80)}`);

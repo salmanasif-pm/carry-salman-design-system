@@ -1,6 +1,6 @@
 # Carry — Salman Asif Personal Design System
 
-**Version 0.9.1 — 11 Sep 2026.** Owner: Salman Asif. Certainty of the system: **Provisional**. Release: **review required** until Salman's identity approval (human-only). Delta from v0.9: `docs/delta-report-v0.9.1.md`.
+**Version 0.9.2 — 12 Sep 2026** (v0.9.1 of 11 Sep plus the content-brief alignment in `docs/decisions/0011-content-brief-alignment.md`; applied from `CODEBASE_UPDATES_v0.9.2.md`).** Owner: Salman Asif. Certainty of the system: **Provisional**. Release: **review required** until Salman's identity approval (human-only). Delta from v0.9: `docs/delta-report-v0.9.1.md`.
 
 Carry is the brand operating system for one professional identity — **Technical Product Manager | Product Strategy, AI & Complex Platforms** — whose job is to *make complexity legible enough for the next responsible decision.* North star: **Clarity that carries weight.** Emotional signature: calm command · governed momentum · human consequence. Core movement: Signal → Structure → Proof → Movement.
 
@@ -109,7 +109,7 @@ Rules: axes appear only when relevant · a Confirmed fact can be gated · approv
 
 Namespace on `window`: `DesignSystem_79e114`.
 
-**Signature** (`components/signature/`, 10)
+**Signature** (`components/signature/`, 12)
 - `Composition` — the seven-form family: above / line / below with form-specific labels, tick and lead.
 - `HandleTruth` — the specialised first form.
 - `Threshold` — the 2px rule; `fn` = decision · evidence · progression · transition · reflection · separation changes the tick.
@@ -120,6 +120,8 @@ Namespace on `window`: `DesignSystem_79e114`.
 - `CounterpointRail` — the condition that would change the recommendation.
 - `HandoffFooter` — state · next decision · owner · next artifact · version.
 - `Provenance` — source ancestry; respects provenance lines per mode.
+- `ReportBack` — reveal card: what came in · what changed · what could not be settled (third section never hidden; empty renders "Not yet written").
+- `InternalWatermark` — overlay for artifacts that failed the release gate; ink only, no hide prop.
 
 **Diagram** (`components/diagram/`, 6)
 - `LoadNode` — node with certainty on its edge; `carries` marks the load-bearing anchor.
@@ -135,7 +137,7 @@ Namespace on `window`: `DesignSystem_79e114`.
 
 **Core** (`components/core/`, 1) — `Button` (primary · secondary · ghost · signal).
 
-**Count: 19 components** (signature 10 · diagram 6 · data 1 · brand 1 · core 1; corrected from 21 in v0.9.1 — the manifest lists 23 entries because it also exports `CARRY_FORMS`, `CARRY_CERTAINTY`, `CARRY_OPERATING_CERTAINTY`, `CARRY_RELEASE` as helpers, and `normalizeState` is a function, not a component).
+**Count: 21 JSX components / 26 exports** (signature 12 · diagram 6 · data 1 · brand 1 · core 1; the exports also include `CARRY_FORMS`, `CARRY_CERTAINTY`, `CARRY_OPERATING_CERTAINTY`, `CARRY_RELEASE`, `BRIEF_CERTAINTY`, `normalizeState`). `_ds_bundle.js` and `_ds_manifest.json` are compiled by the design tool and still describe v0.9.1 until the next compile; consumers that transpile the `.jsx` sources see everything.
 
 ### Intentional additions
 All components are intentional: no source defines a component inventory for this personal system (the brief lists *candidate* signature components; the attached systems' inventories were not carried over). Each maps to a brief §9 hypothesis or a §4 doctrine: Decision Line, Evidence Strip, Boundary Frame, State Marker, Load Path, Consequence Note, Progression Ladder, Counterpoint Rail, Handoff Footer, Source Ancestry → `DecisionLine`, `EvidenceStrip`, `BoundaryFrame`, `StateMark`, `LoadNode/LoadLane/Connector`, `ConsequenceNote`, `ProgressionLadder`, `CounterpointRail`, `HandoffFooter`, `Provenance`. `HandleTruth`/`Threshold` operationalise Visible Handle vs Operating Truth. `Matrix` operationalises bridge languages. `Button` exists for future web/product surfaces only.

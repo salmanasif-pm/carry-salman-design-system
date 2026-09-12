@@ -1,5 +1,5 @@
 import type { Story } from '@ladle/react';
-import { Composition, ConsequenceNote, CounterpointRail, DecisionLine, EvidenceStrip, HandleTruth, HandoffFooter, Provenance, StateMark, Threshold, CARRY_FORM_KEYS } from '../ds';
+import { Composition, ConsequenceNote, CounterpointRail, DecisionLine, EvidenceStrip, HandleTruth, HandoffFooter, InternalWatermark, Provenance, ReportBack, StateMark, Threshold, CARRY_FORM_KEYS } from '../ds';
 import { Frame, gate, rel, stateArgTypes, stateArgs, type StateArgs } from './_controls';
 
 export default { title: 'Signature' };
@@ -20,10 +20,16 @@ Threshold_.storyName = 'Threshold';
 Threshold_.args = { ...stateArgs, fn: 'decision', hasTruth: true };
 Threshold_.argTypes = { ...stateArgTypes, fn: { control: { type: 'select' }, options: ['decision', 'evidence', 'progression', 'transition', 'reflection', 'separation'] } };
 
-export const StateMark_: Story<StateArgs & { label: string }> = (a) => <Frame mode={a.mode} ground={a.ground}><StateMark certainty={a.certainty} gated={gate(a.gated)} release={rel(a.release)} label={a.label || undefined} /></Frame>;
+export const StateMark_: Story<StateArgs & { label: string; variant: 'none' | 'inferred' | 'assumed' | 'proposed'; wording: 'system' | 'plain' }> = (a) => <Frame mode={a.mode} ground={a.ground}><StateMark certainty={a.certainty} variant={a.variant === 'none' ? undefined : a.variant} gated={gate(a.gated)} release={rel(a.release)} label={a.label || undefined} wording={a.wording} /></Frame>;
 StateMark_.storyName = 'StateMark';
-StateMark_.args = { ...stateArgs, label: '' };
-StateMark_.argTypes = stateArgTypes;
+StateMark_.args = { ...stateArgs, label: '', variant: 'none', wording: 'system' };
+StateMark_.argTypes = { ...stateArgTypes, variant: { control: { type: 'select' }, options: ['none', 'inferred', 'assumed', 'proposed'] }, wording: { control: { type: 'select' }, options: ['system', 'plain'] } };
+
+export const ReportBack_: Story<StateArgs & { unsettledEmpty: boolean }> = (a) => <Frame mode={a.mode} ground={a.ground}><ReportBack title="[report back]" cameIn="[what came in]" changed="[what changed]" unsettled={a.unsettledEmpty ? undefined : '[what could not be settled]'} /></Frame>;
+ReportBack_.storyName = 'ReportBack'; ReportBack_.args = { ...stateArgs, unsettledEmpty: true }; ReportBack_.argTypes = stateArgTypes;
+
+export const InternalWatermark_: Story<StateArgs & { reason: string }> = (a) => <Frame mode={a.mode} ground={a.ground} width={720}><div style={{ position: 'relative', minHeight: 320, padding: 'var(--sp-6)' }}><Composition form="claim-support" above="[first read]" below="[second read]" aboveSize="m" /><InternalWatermark reason={a.reason || undefined} /></div></Frame>;
+InternalWatermark_.storyName = 'InternalWatermark'; InternalWatermark_.args = { ...stateArgs, reason: 'release_permission is not approved_public' }; InternalWatermark_.argTypes = stateArgTypes;
 
 export const StateMarkInvalidKey: Story<StateArgs> = (a) => <Frame mode={a.mode} ground={a.ground}><StateMark certainty={'likely' as never} /></Frame>;
 StateMarkInvalidKey.storyName = 'StateMark · unknown key renders a visible invalid mark';
